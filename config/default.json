@@ -1,0 +1,6 @@
+{
+    "jwtPrivateKey": "unsecureKey",
+    "db": "mongodb://localhost/commerce",
+    "requiresAuthAdmin": false,
+    "requiresAuth": false
+}

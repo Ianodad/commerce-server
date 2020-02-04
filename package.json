@@ -4,11 +4,24 @@
   "description": "This is backend for a commerce site",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "valormedia",
   "license": "ISC",
+  "repository": "https://github.com/Ianodad/commerce-server.git",
   "dependencies": {
-    "express": "^4.17.1"
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "config": "^3.2.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "joi": "^14.3.1",
+    "mongoose": "^5.8.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
