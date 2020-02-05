@@ -1,3 +1,4 @@
+//  Universal Error handlings for routings
 module.exports = function asyncMiddleware(handler) {
     return async (req, res, next) => {
         try {

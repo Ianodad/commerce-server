@@ -1,3 +1,5 @@
+
+// Contains keys for systems
 {
     "jwtPrivateKey": "jsonstore_jwtPrivateKey"
 }

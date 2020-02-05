@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 
 
+
 require("./startup/cors")(app);
+require('./startup/config')();
 require('express-async-errors')
+// routing separation of concern
 require('./startup/routes')(app);
 require('./startup/db')();
 
