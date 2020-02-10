@@ -2,10 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 
+
+const {
+    Cart,
+    validate
+} = require('../../models/cart');
+
+
 // Get all users
-router.get('/', (req, res) => {
+router.get('/newCart', (req, res) => {
     // const users = await User.find()
-   
+    
     res.send("hello")
 });
 

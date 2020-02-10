@@ -20,17 +20,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    company: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Company'
-    },
-
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Category'
-    },
+    // category: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     required: true,
+    //     ref: 'Category'
+    // },
 
     quantity: {
         type: Number,
@@ -43,25 +37,19 @@ const productSchema = new mongoose.Schema({
     registered: {
         type: Date,
         default: Date.now
-    },
-    reviews: [reviewSchema]
+    }
 })
 
 const Product = mongoose.model('Product', productSchema);
-
-
-
 
 function validateProduct(product) {
     const schema = {
         image: Joi.string(),
         imageLg: Joi.string(),
         productName: Joi.string().min(3).required(),
-        category: Joi.string(),
+        category: Joi.string().required(),
         isAvailable: Joi.boolean(),
         price: Joi.number(),
-        company: Joi.string().required(),
-        category: Joi.string().required(),
         quantity: Joi.number(),
         rating: Joi.number(),
         description: Joi.string()
