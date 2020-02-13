@@ -1,6 +1,8 @@
 // mongoose export
 const mongoose = require('mongoose');
-const Joi = require('joi');
+const BaseJoi = require('joi');
+const Extension = require('joi-date-extensions');
+const Joi = BaseJoi.extend(Extension);
 const {
     productSchema
 } = require('./product')
@@ -8,8 +10,8 @@ const {
 const cartSchema = new mongoose.Schema({
     userId:String,
     state: String,
-    products:String,
-    Total: Number,
+    products:[productSchema],
+    total: Number,
     createDate : Date,
     modifiedDate: Date
 })
@@ -19,9 +21,9 @@ const Cart = mongoose.model('Cart', cartSchema);
 
 function validateCart(product) {
     const schema = {
-         userId:StringJoi.string().required(),
-         state : StringJoi.string(),
-         Total : NumberJoi.number(), 
+         userId:Joi.string(),
+         state : Joi.string(),
+         total : Joi.number(), 
          products: Joi.array(),
          createDate : Joi.date().format('YYYY-MM-DD'),
          modifiedDate: Joi.date().format('YYYY-MM-DD')

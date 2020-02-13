@@ -9,8 +9,7 @@ const productSchema = new mongoose.Schema({
         type: String
     },
     imageLg: {
-        type: String,
-        required: true
+        type: String
     },
     productName: {
         type: String,
@@ -27,8 +26,10 @@ const productSchema = new mongoose.Schema({
     // },
 
     quantity: {
-        type: Number,
-        required: true
+        type: Number
+    },
+    subTotal : {
+        type:Number
     },
     rating: {
         type: Number
@@ -60,3 +61,4 @@ function validateProduct(product) {
 
 module.exports.validate = validateProduct;
 module.exports.Product = Product;
+module.exports.productSchema= productSchema;
