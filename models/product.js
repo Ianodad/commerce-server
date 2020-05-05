@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 
 const productSchema = new mongoose.Schema({
+
     index: Number,
     isAvailable: Boolean,
     image: {
@@ -11,25 +12,24 @@ const productSchema = new mongoose.Schema({
     imageLg: {
         type: String
     },
-    productName: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true,
+    category: {
+        type: String
     },
     // category: {
     //     type: mongoose.Schema.Types.ObjectId,
     //     required: true,
     //     ref: 'Category'
     // },
-
+    productName: {
+        type: String
+    },
+    price:{ 
+        type:Number,
+        require: true
+    },
+    subTotal: Number,
     quantity: {
         type: Number
-    },
-    subTotal : {
-        type:Number
     },
     rating: {
         type: Number
@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema({
     description: String,
     registered: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
 })
 
@@ -47,8 +47,8 @@ function validateProduct(product) {
     const schema = {
         image: Joi.string(),
         imageLg: Joi.string(),
-        productName: Joi.string().min(3).required(),
-        category: Joi.string().required(),
+        productName: Joi.string().min(3),
+        category: Joi.string(),
         isAvailable: Joi.boolean(),
         price: Joi.number(),
         quantity: Joi.number(),
@@ -58,6 +58,11 @@ function validateProduct(product) {
 
     return Joi.validate(product, schema);
 }
+
+// validateProductChart(product) {
+
+
+// }
 
 module.exports.validate = validateProduct;
 module.exports.Product = Product;

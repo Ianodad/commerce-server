@@ -47,23 +47,32 @@ router.post("/:id", async (req, res) => {
     let user = await User.findById( req.params.id);
     if (!user) return res.status(400).send("Invalid customer.");
 
+    console.log(req.body)
+    console.log(req.params.id)
+
     let cart = await Cart.findOne({ userId :req.params.id })
     if (!cart) {
         newCart = new Cart ({
             userId: req.params.id,
             state : "active", // three states active , pending , complete
+            category: req.body.category,
             products: req.body.products,
-            createDate : req.body.createDate,
-            modifiedDate : req.body.modifiedDate,
-            total : req.body.total
+            orderSubTotal: req.body.orderSubTotal,
+            shippingCost: req.body.shippingCost,
+            tax: req.body.tax,
+            total : req.body.total,
+            createDate : Date.now(),
+            modifiedDate : Date.now()
         })
          await newCart.save();
     }
-    
+    cart.category = req.body.category
     cart.products = req.body.products, 
-    cart.createDate =  req.body.createDate,
-    cart.modifiedDate = req.body.modifiedDate,
-    cart.createDate = req.body.total,
+    cart.orderSubTotal =req.body.orderSubTotal,
+    cart.shippingCost = req.body.shippingCost,
+    cart.tax = req.body.tax,
+    cart.total = req.body.total,
+    cart.modifiedDate = Date.now()
     cart.save()
 
 
@@ -79,6 +88,9 @@ router.post("/:id", async (req, res) => {
 router.post("/:id", (req, res) => {
 
 })
+
+
+
 
 
 module.exports = router

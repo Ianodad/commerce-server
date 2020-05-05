@@ -7,10 +7,18 @@ const {
     productSchema
 } = require('./product')
 
+ 
 const cartSchema = new mongoose.Schema({
-    userId:String,
+    userId:{
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+        },
     state: String,
     products:[productSchema],
+    orderSubTotal: Number,
+    shippingCost: Number, 
+    tax: Number,
     total: Number,
     createDate : Date,
     modifiedDate: Date
@@ -23,6 +31,9 @@ function validateCart(product) {
     const schema = {
          userId:Joi.string(),
          state : Joi.string(),
+         orderSubTotal: Joi.number(),
+         shippingCost: Joi.number(),
+         tax: Joi.number(),
          total : Joi.number(), 
          products: Joi.array(),
          createDate : Joi.date().format('YYYY-MM-DD'),
