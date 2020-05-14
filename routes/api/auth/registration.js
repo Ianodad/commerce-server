@@ -35,4 +35,18 @@ router.post("/registration", async (req, res)=> {
 
 })
 
+
+// router.post("/check", async(req, res) => {
+//     let user = await User.findOne({ email: req.body.email });
+    
+//     if (user) return res.status(400).send({msg: `${req.body.email} already registered.`, state: true});    
+// })
+
+router.get('/asyncValidate', async (req, res) => {
+    
+    const emails = await User.find().distinct("email")
+    res.send(emails)
+})
+
+
 module.exports = router;

@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Generate json web token
-userSchema.methods.generateAuthToken = function () {
+const generateAuthToken = function () {
 	const token = jwt.sign({
 			_id: this._id,
 			isAdmin: this.isAdmin
@@ -91,4 +91,4 @@ exports.validateLogin = validateLogin;
 exports.validate = validateUser;
 exports.hash = hashPassword;
 exports.decrypt = decryptPassword;
-
+exports.generateAuthToken = generateAuthToken;

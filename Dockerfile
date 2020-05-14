@@ -5,7 +5,9 @@ WORKDIR /app
 # copy package.json to the app direcory created
 COPY package.json /app
 # run install command
+COPY . /app
 RUN npm install
+
 # copy the rest of the soource files
 COPY . /app
 # run npm start
